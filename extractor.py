@@ -4,7 +4,7 @@ import xlsxwriter
 import time
 
 # Enter your API key here
-API_KEY = 'wwsdftt7pw6a2scvd8hd3qcf'
+API_KEY = 'ENTER YOUR IEEE API KEY HERE'
 
 # Get the desired number of records from the user
 num_records = int(input("Enter the number of records you want to extract: "))
