@@ -3,7 +3,7 @@ import json
 import xlsxwriter
 
 # Enter your API key here
-API_KEY = 'wwsdftt7pw6a2scvd8hd3qcf'
+API_KEY = '<INSERT YOUR IEEE EXPLORE API KEY>'
 
 # Set the base URL for the IEEE Explore API
 base_url = 'http://ieeexploreapi.ieee.org/api/v1/search/articles?apikey={}&format=json&max_records=100&start_record=1&sort_order=asc&sort_field=article_title&querytext=blockchain'.format(
