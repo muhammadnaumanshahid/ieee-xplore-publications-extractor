@@ -1,13 +1,17 @@
 import requests
 import json
 import xlsxwriter
+import time
 
 # Enter your API key here
-API_KEY = '<INSERT YOUR IEEE EXPLORE API KEY>'
+API_KEY = 'wwsdftt7pw6a2scvd8hd3qcf'
+
+# Get the desired number of records from the user
+num_records = int(input("Enter the number of records you want to extract: "))
 
 # Set the base URL for the IEEE Explore API
-base_url = 'http://ieeexploreapi.ieee.org/api/v1/search/articles?apikey={}&format=json&max_records=100&start_record=1&sort_order=asc&sort_field=article_title&querytext=blockchain'.format(
-    API_KEY)
+base_url = 'http://ieeexploreapi.ieee.org/api/v1/search/articles?apikey={}&format=json&max_records={}&start_record=1&sort_order=asc&sort_field=article_title&querytext=blockchain'.format(
+    API_KEY, num_records)
 
 # Send a GET request to the API and retrieve the response
 response = requests.get(base_url)
@@ -49,11 +53,16 @@ for i, article in enumerate(data['articles']):
     worksheet.write(i + 1, 3, year)
     worksheet.write(i + 1, 4, pub_type)
 
-    # Print status indicator
-    print(f"Record {i+1} extracted.")
+    # Print status indicator after every 100 records extracted
+    if (i+1) % 100 == 0:
+        print(f"{i+1} records extracted.")
+
+    # Add a 1-second delay after every 8 records
+    if (i+1) % 8 == 0:
+        time.sleep(1)
 
 # Close the workbook
 workbook.close()
 
 # Print a message to confirm the data has been saved to the Excel sheet
-print('Publication data saved to blockchain_publications.xlsx')
+print(f'{num_records} publication data saved to blockchain_publications.xlsx')
